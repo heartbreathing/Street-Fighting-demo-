@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Resize</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- father container div -->
+    <div style="position: relative; display: inline-block">
+      <!-- son container div -->
+      <div
+        style="
+          position: absolute;
+          display: flex;
+          width: 100%;
+          align-items: center;
+          padding: 20px;
+        "
+      >
+        <!-- player health -->
+        <div
+          id="playerHealth"
+          style="background-color: yellow; height: 30px; width: 100%"
+        ></div>
+        <!-- timer -->
+        <div
+          style="
+            background-color: red;
+            width: 100px;
+            height: 50px;
+            flex-shrink: 0;
+          "
+        ></div>
+        <!-- enemy health -->
+        <div style="position:relative;">
+            <div
+            id="enemyHealth"
+            style="background-color: yellow;          ></div>           
+            <div style="position: absolute; background: blue"></div>
+        </div>
+      <canvas></canvas>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

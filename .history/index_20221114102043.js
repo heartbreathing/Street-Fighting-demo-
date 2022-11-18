@@ -1,0 +1,4 @@
+var canvas = document.querySelector('canvas');
+
+
+if (canvas.getC)
