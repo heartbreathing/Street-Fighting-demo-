@@ -122,9 +122,6 @@ const keys = {
     w: {
         pressed: false
     },
-    s:{
-        pressed: false
-    },
     ArrowLeft: {
         pressed: false
     },
@@ -132,9 +129,6 @@ const keys = {
         pressed: false
     },
     ArrowUp: {
-        pressed: false
-    },
-    ArrowDown: {
         pressed: false
     }
 }

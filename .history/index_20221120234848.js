@@ -122,9 +122,6 @@ const keys = {
     w: {
         pressed: false
     },
-    s:{
-        pressed: false
-    },
     ArrowLeft: {
         pressed: false
     },
@@ -132,9 +129,6 @@ const keys = {
         pressed: false
     },
     ArrowUp: {
-        pressed: false
-    },
-    ArrowDown: {
         pressed: false
     }
 }
@@ -192,14 +186,14 @@ decreaseTimer();
 let gameOver = false;
 function animate() {
 
-    //'requestAnimationFrame()' means making the animation happen through refreshing the scene every certain time. 
-    window.requestAnimationFrame(animate);
+    //''Make the animation happen through refreshing the scene every certain time. 
+    window.v(animate);
     
     
     //Refresh the context to delete the trace of the movement.
     context.fillStyle = 'black';
     context.fillRect(0, 0, canvas.width, canvas.height);
-    
+    // background.update();//!!!insert
     player.update();
     enemy.update();
 
@@ -213,6 +207,7 @@ function animate() {
     }else if (keys.d.pressed && lastKey === 'd') {
         player.velocity.x = 5
     }
+
    
 
     // enemy movement

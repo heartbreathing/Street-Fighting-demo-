@@ -133,8 +133,8 @@ const keys = {
     },
     ArrowUp: {
         pressed: false
-    },
-    ArrowDown: {
+    }
+    ArrowUp: {
         pressed: false
     }
 }

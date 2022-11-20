@@ -122,9 +122,6 @@ const keys = {
     w: {
         pressed: false
     },
-    s:{
-        pressed: false
-    },
     ArrowLeft: {
         pressed: false
     },
@@ -132,9 +129,6 @@ const keys = {
         pressed: false
     },
     ArrowUp: {
-        pressed: false
-    },
-    ArrowDown: {
         pressed: false
     }
 }
@@ -149,7 +143,8 @@ function rectangularCollision({rectangle1, rectangle2}) {
         (rectangle1.attackBox.position.x + rectangle1.attackBox.width >= rectangle2.position.x && 
         rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width && 
         rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.attackBox.position.y && 
-        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height) ||(rectangle1.attackBox.position.x >= rectangle2.position.x && 
+        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height) ||
+        (rectangle1.attackBox.position.x >= rectangle2.position.x && 
             rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width && 
             rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.attackBox.position.y && 
             rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height )
@@ -171,9 +166,10 @@ function determineWinner({player, enemy, timerId}) {
         document.querySelector('#displayText').innerHTML = 'Player 1 Win';
     }else if (player.health === enemy.health){        
         document.querySelector('#displayText').innerHTML = 'Tie';
+        // document.querySelector('#displayText').style.display = 'flex'
     }
-}
 
+}
 let timer = 60;
 let timerId;
 function decreaseTimer() {    
@@ -192,14 +188,14 @@ decreaseTimer();
 let gameOver = false;
 function animate() {
 
-    //'requestAnimationFrame()' means making the animation happen through refreshing the scene every certain time. 
+    //Make the animation happen through refresh the scene every certain time. 
     window.requestAnimationFrame(animate);
     
     
     //Refresh the context to delete the trace of the movement.
     context.fillStyle = 'black';
     context.fillRect(0, 0, canvas.width, canvas.height);
-    
+    // background.update();//!!!insert
     player.update();
     enemy.update();
 
@@ -213,6 +209,7 @@ function animate() {
     }else if (keys.d.pressed && lastKey === 'd') {
         player.velocity.x = 5
     }
+
    
 
     // enemy movement
