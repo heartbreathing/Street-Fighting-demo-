@@ -148,10 +148,7 @@ class Fighter extends Sprite {
     }
     
     switchSprite(sprite) {
-        if (this.image === this.sprites.attack1.image && 
-            this.frameCurrent < this.sprites.attack1.framesMax - 1
-            ) return;//if frameCurrent=0,the next step will not  be executed, otherwise it keep going to go. 
-
+        if (this.image === this.sprites.attack1.image && this.frameCurrent < this) return
         switch (sprite) {
             case 'idle':
                 if(this.image !== this.sprites.idle.image) {

@@ -140,7 +140,7 @@ class Fighter extends Sprite {
     }
     //hitting counts once for every touch
     attack() {
-        this.switchSprite('attack1');
+        this.sw
         this.isAttacking = true;
         setTimeout(() => {
             this.isAttacking = false
@@ -148,10 +148,6 @@ class Fighter extends Sprite {
     }
     
     switchSprite(sprite) {
-        if (this.image === this.sprites.attack1.image && 
-            this.frameCurrent < this.sprites.attack1.framesMax - 1
-            ) return;//if frameCurrent=0,the next step will not  be executed, otherwise it keep going to go. 
-
         switch (sprite) {
             case 'idle':
                 if(this.image !== this.sprites.idle.image) {
