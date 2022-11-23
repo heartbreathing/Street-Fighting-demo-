@@ -198,19 +198,12 @@ function animate() {
     // enemy movement
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
         enemy.velocity.x = -5;
-        enemy.switchSprite('run');
+        player.switchSprite('run');
     }else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
         enemy.velocity.x = 5;
-        enemy.switchSprite('run');
+        player.switchSprite('run');
     }else {
-        enemy.switchSprite('idle');
-    }
-
-    //jumping
-    if (enemy.velocity.y < 0) {
-        enemy.switchSprite('jump');
-    }else if (enemy.velocity.y > 0) {
-        enemy.switchSprite('fall');
+        player.switchSprite('idle');
     }
 
     //@detect for swapping places
@@ -266,7 +259,7 @@ switch (event.key) {
         lastKey = 'a';
         break;
     case 'w':
-        player.velocity.y = -20;
+        player.velocity.y = -10;
         break;
     case 's':
         player.attack();
@@ -281,14 +274,15 @@ switch (event.key) {
         enemy.lastKey = 'ArrowRight';
         break;
     case 'ArrowUp':
-        enemy.velocity.y = -20;
+        enemy.velocity.y = -10;
         break;
     case 'ArrowDown':
         enemy.attack();
         break;
-    }   
-})
 
+}
+   
+})
 window.addEventListener('keyup', (event) => {
 switch (event.key) {
     case 'd':

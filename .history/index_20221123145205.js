@@ -286,9 +286,9 @@ switch (event.key) {
     case 'ArrowDown':
         enemy.attack();
         break;
-    }   
+}
+   
 })
-
 window.addEventListener('keyup', (event) => {
 switch (event.key) {
     case 'd':

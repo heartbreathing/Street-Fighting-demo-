@@ -206,13 +206,6 @@ function animate() {
         enemy.switchSprite('idle');
     }
 
-    //jumping
-    if (enemy.velocity.y < 0) {
-        enemy.switchSprite('jump');
-    }else if (enemy.velocity.y > 0) {
-        enemy.switchSprite('fall');
-    }
-
     //@detect for swapping places
     if (rectangleTurnAround({
         rectangle1: player,
@@ -266,7 +259,7 @@ switch (event.key) {
         lastKey = 'a';
         break;
     case 'w':
-        player.velocity.y = -20;
+        player.velocity.y = -10;
         break;
     case 's':
         player.attack();
@@ -281,14 +274,15 @@ switch (event.key) {
         enemy.lastKey = 'ArrowRight';
         break;
     case 'ArrowUp':
-        enemy.velocity.y = -20;
+        enemy.velocity.y = -10;
         break;
     case 'ArrowDown':
         enemy.attack();
         break;
-    }   
-})
 
+}
+   
+})
 window.addEventListener('keyup', (event) => {
 switch (event.key) {
     case 'd':

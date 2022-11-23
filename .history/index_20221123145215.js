@@ -287,8 +287,8 @@ switch (event.key) {
         enemy.attack();
         break;
     }   
+   
 })
-
 window.addEventListener('keyup', (event) => {
 switch (event.key) {
     case 'd':

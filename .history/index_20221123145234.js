@@ -288,7 +288,6 @@ switch (event.key) {
         break;
     }   
 })
-
 window.addEventListener('keyup', (event) => {
 switch (event.key) {
     case 'd':
