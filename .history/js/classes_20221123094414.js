@@ -100,11 +100,9 @@ class Fighter extends Sprite {
         this.framesHold = 5;
         this.sprites = sprites;
 
-        for (const sprite in this.sprites) {
-            sprites[sprite].image = new Image();
-            sprites[sprite].image.src = sprites[sprite].imageSrc;
-        };
-        console.log(this.sprites);
+        for (Sprite in sprites) {
+            sprites[Sprite].image = new Image;
+        }
     
     }
 

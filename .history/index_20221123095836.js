@@ -136,13 +136,11 @@ function animate() {
 
     //(&& lastKey === '') means only the last key you pressed can control the direction, when you press two keys.
     // player movement
-    player.image = player.sprites.idle.image;
     if (keys.a.pressed && lastKey === 'a') {
         player.velocity.x = -5;
-        player.image = player.sprites.run.image;
+        player.image = player.sprites.run,ima
     }else if (keys.d.pressed && lastKey === 'd') {
-        player.velocity.x = 5;
-        player.image = player.sprites.run.image;
+        player.velocity.x = 5
     }
    
 

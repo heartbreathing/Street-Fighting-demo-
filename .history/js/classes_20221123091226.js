@@ -98,13 +98,7 @@ class Fighter extends Sprite {
         this.frameCurrent = 0;
         this.framesElapsed = 0;
         this.framesHold = 5;
-        this.sprites = sprites;
-
-        for (const sprite in this.sprites) {
-            sprites[sprite].image = new Image();
-            sprites[sprite].image.src = sprites[sprite].imageSrc;
-        };
-        console.log(this.sprites);
+        this.sp
     
     }
 

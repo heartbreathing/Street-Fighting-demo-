@@ -48,19 +48,8 @@ const player = new Fighter({
     offset : {
         x: 215, 
         y: 205
-    },
-    sprites: {
-        idle: {
-            imageSrc: './img/samuraiMack/Idle.png',
-            framesMax: 8,
-        },
-        run: {
-            imageSrc: './img/samuraiMack/Run.png',
-            framesMax: 8,
-            image: new Image()
-        }
-
     }
+    
 })
 
 
@@ -136,13 +125,10 @@ function animate() {
 
     //(&& lastKey === '') means only the last key you pressed can control the direction, when you press two keys.
     // player movement
-    player.image = player.sprites.idle.image;
     if (keys.a.pressed && lastKey === 'a') {
-        player.velocity.x = -5;
-        player.image = player.sprites.run.image;
+        player.velocity.x = -5
     }else if (keys.d.pressed && lastKey === 'd') {
-        player.velocity.x = 5;
-        player.image = player.sprites.run.image;
+        player.velocity.x = 5
     }
    
 

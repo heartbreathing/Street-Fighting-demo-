@@ -141,8 +141,7 @@ function animate() {
         player.velocity.x = -5;
         player.image = player.sprites.run.image;
     }else if (keys.d.pressed && lastKey === 'd') {
-        player.velocity.x = 5;
-        player.image = player.sprites.run.image;
+        player.velocity.x = 5
     }
    
 
