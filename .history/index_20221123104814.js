@@ -61,10 +61,6 @@ const player = new Fighter({
         jump: {
             imageSrc: './img/samuraiMack/Jump.png',
             framesMax: 2,
-        },
-        fall: {
-            imageSrc: './img/samuraiMack/Fall.png',
-            framesMax: 2,
         }
 
     }
@@ -143,22 +139,18 @@ function animate() {
 
     //(&& lastKey === '') means only the last key you pressed can control the direction, when you press two keys.
     // player movement
-    
+    player.image = player.sprites.idle.image;
     if (keys.a.pressed && lastKey === 'a') {
         player.velocity.x = -5;
-        player.switchSprite('run');
+        player.image = player.sprites.run.image;
     }else if (keys.d.pressed && lastKey === 'd') {
         player.velocity.x = 5;
-        player.switchSprite('run');
-    }else {
-        player.switchSprite('idle');
+        player.image = player.sprites.run.image;
     }
 
-    //jumping
     if (player.velocity.y < 0) {
-        player.switchSprite('jump');
-    }else if (player.velocity.y > 0) {
-        player.switchSprite('fall');
+        player.image = player.sprites.jump.image;
+        player.framesMax = player.s
     }
    
 

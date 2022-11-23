@@ -158,7 +158,7 @@ function animate() {
     if (player.velocity.y < 0) {
         player.switchSprite('jump');
     }else if (player.velocity.y > 0) {
-        player.switchSprite('fall');
+
     }
    
 

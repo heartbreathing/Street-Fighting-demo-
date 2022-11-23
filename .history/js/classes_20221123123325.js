@@ -134,7 +134,7 @@ class Fighter extends Sprite {
         // Gravity function. Avoid the box to fall out of the window.
         if (this.position.y + this.height + this.velocity.y >= canvas.height - 96){
             this.velocity.y = 0;
-            this.position.y = 380;
+            this.position
         }else this.velocity.y += gravity; //make the box always be pulled down to the ground.     
         console.log(this.position);  
     }

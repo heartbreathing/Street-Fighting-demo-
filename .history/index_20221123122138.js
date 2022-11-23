@@ -62,8 +62,8 @@ const player = new Fighter({
             imageSrc: './img/samuraiMack/Jump.png',
             framesMax: 2,
         },
-        fall: {
-            imageSrc: './img/samuraiMack/Fall.png',
+        jump: {
+            imageSrc: './img/samuraiMack/Jump.png',
             framesMax: 2,
         }
 
@@ -154,11 +154,8 @@ function animate() {
         player.switchSprite('idle');
     }
 
-    //jumping
     if (player.velocity.y < 0) {
         player.switchSprite('jump');
-    }else if (player.velocity.y > 0) {
-        player.switchSprite('fall');
     }
    
 
