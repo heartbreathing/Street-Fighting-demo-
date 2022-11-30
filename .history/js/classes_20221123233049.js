@@ -34,8 +34,7 @@ class Sprite {
             this.position.y - this.offset.y, 
             (this.image.width / this.framesMax) * this.scale.x, 
             this.image.height * this.scale.x
-            );         
-
+            );        
     }
 
     animateFrame() {
@@ -69,8 +68,7 @@ class Fighter extends Sprite {
         scale = {x: 1, y: 1},
         framesMax = 1,
         offset = {x: 0, y: 0},
-        sprites,
-        lastDirection
+        sprites
         }) {
         
         super({
@@ -91,7 +89,7 @@ class Fighter extends Sprite {
                 y: this.position.y
             },
             offset: offset,
-            width: 200,
+            width: 100,
             height: 50,
         };
         this.color = color;
@@ -101,7 +99,6 @@ class Fighter extends Sprite {
         this.framesElapsed = 0;
         this.framesHold = 5;
         this.sprites = sprites;
-        this.lastDirection = lastDirection;
 
         for (const sprite in this.sprites) {
             sprites[sprite].image = new Image();
@@ -112,19 +109,23 @@ class Fighter extends Sprite {
     }
 
 
+    // draw () {
+    //     context.fillStyle = this.color;        
+    //     context.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+    //     //Attack box
+    //     if (this.isAttacking){
+    //     context.fillStyle = 'blue'
+    //     context.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+    //     }
+    // }
+
     update () {
         //Update the position of the box in real time.
         this.draw();  
-        this.animateFrame();  
-        
-        //the direction of the attackBox is depend on the characters lastDirection.
-        if (this.lastDirection === 'right') {
-            this.attackBox.position.x = this.position.x;
-            this.attackBox.position.y = this.position.y;
-        } else if (this.lastDirection === 'left') {
-            this.attackBox.position.x = this.position.x - 150 ;
-            this.attackBox.position.y = this.position.y;
-        }        
+        this.animateFrame();         
+        this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+        this.attackBox.position.y = this.position.y;
         
         
         this.position.x += this.velocity.x ; 
@@ -136,17 +137,10 @@ class Fighter extends Sprite {
             this.position.y = 380;
         }else this.velocity.y += gravity; //make the box always be pulled down to the ground.     
         console.log(this.position);  
-
     }
     //hitting counts once for every touch
     attack() {
-        if (this.lastDirection === 'left'){
-            this.switchSprite('attack1Left');
-        }
-        else if(this.lastDirection === 'right'){
-            this.switchSprite('attack1Right');
-        }
-        // this.switchSprite('attack1');
+        this.switchSprite('attack1');
         this.isAttacking = true;
         setTimeout(() => {
             this.isAttacking = false
@@ -154,86 +148,69 @@ class Fighter extends Sprite {
     }
     
     switchSprite(sprite) {
-
-        if ((this.image === this.sprites.attack1Left.image && 
-        this.frameCurrent < this.sprites.attack1Left.framesMax - 1) || 
-        (this.image === this.sprites.attack1Right.image && 
-        this.frameCurrent < this.sprites.attack1Right.framesMax - 1)) return;
-       
+        if (this.image === this.sprites.attack1.image && 
+            this.frameCurrent < this.sprites.attack1.framesMax - 1
+            ) return;//if frameCurrent=0,the next step will not  be executed, otherwise it keep going to go. 
 
         switch (sprite) {
-            case 'idleRight':
-                if(this.image !== this.sprites.idleRight.image) {
-                    this.image = this.sprites.idleRight.image;
-                    this.framesMax = this.sprites.idleRight.framesMax;
+            case 'idle':
+                if(this.image !== this.sprites.idle.image) {
+                    this.image = this.sprites.idle.image;
+                    this.framesMax = this.sprites.idle.framesMax;
                     this.frameCurrent = 0;  
                 }                         
             break;
-            case 'runRight':
-                if(this.image !== this.sprites.runRight.image) {
-                    this.image = this.sprites.runRight.image;
-                    this.framesMax = this.sprites.runRight.framesMax;  
+            case 'run':
+                if(this.image !== this.sprites.run.image) {
+                    this.image = this.sprites.run.image;
+                    this.framesMax = this.sprites.run.framesMax;  
                     this.frameCurrent = 0;  
                 }                 
             break;
-            case 'jumpRight':
-                if(this.image !== this.sprites.jumpRight.image) {
-                this.image = this.sprites.jumpRight.image;
-                this.framesMax = this.sprites.jumpRight.framesMax; 
+            case 'jump':
+                if(this.image !== this.sprites.jump.image) {
+                this.image = this.sprites.jump.image;
+                this.framesMax = this.sprites.jump.framesMax; 
                 this.frameCurrent = 0;              
                 }
             break;
-            case 'fallRight':
-                if(this.image !== this.sprites.fallRight.image) {
-                this.image = this.sprites.fallRight.image;
-                this.framesMax = this.sprites.fallRight.framesMax; 
+            case 'fall':
+                if(this.image !== this.sprites.fall.image) {
+                this.image = this.sprites.fall.image;
+                this.framesMax = this.sprites.fall.framesMax; 
                 this.frameCurrent = 0;              
                 }
             break;
-            case 'attack1Right':
-                if(this.image !== this.sprites.attack1Right.image) {
-                this.image = this.sprites.attack1Right.image;
-                this.framesMax = this.sprites.attack1Right.framesMax; 
-                this.frameCurrent = 0;              
-                }
-            break;
-            case 'idleLeft':
-                if(this.image !== this.sprites.idleLeft.image) {
-                    this.image = this.sprites.idleLeft.image;
-                    this.framesMax = this.sprites.idleLeft.framesMax;
-                    this.frameCurrent = 0;  
-                }                         
-            break;
-            case 'runLeft':
-                if(this.image !== this.sprites.runLeft.image) {
-                    this.image = this.sprites.runLeft.image;
-                    this.framesMax = this.sprites.runLeft.framesMax;  
-                    this.frameCurrent = 0;  
-                }                 
-            break;
-            case 'jumpLeft':
-                if(this.image !== this.sprites.jumpLeft.image) {
-                this.image = this.sprites.jumpLeft.image;
-                this.framesMax = this.sprites.jumpLeft.framesMax; 
-                this.frameCurrent = 0;              
-                }
-            break;
-            case 'fallLeft':
-                if(this.image !== this.sprites.fallLeft.image) {
-                this.image = this.sprites.fallLeft.image;
-                this.framesMax = this.sprites.fallLeft.framesMax; 
-                this.frameCurrent = 0;              
-                }
-            break;
-            case 'attack1Left':
-                if(this.image !== this.sprites.attack1Left.image) {
-                this.image = this.sprites.attack1Left.image;
-                this.framesMax = this.sprites.attack1Left.framesMax; 
+            case 'attack1':
+                if(this.image !== this.sprites.attack1.image) {
+                this.image = this.sprites.attack1.image;
+                this.framesMax = this.sprites.attack1.framesMax; 
                 this.frameCurrent = 0;              
                 }
             break;
         }
 
     }
+    flipSprite() {
+        that = this;
+        this.image = new Image();
+        this.image.src = this.imageSrc;
+        this.img.onload = function() {
+            const that = document.createElement('image');
+            const ctx = canvas.getContext('2d');
+            canvas.height = img.height;
+            canvas.width = img.width;
+        that.image.scale(-1, 1);
+        that.image.translate(-this.img.width, 0);
+        that.image.drawImage(
+            img,
+            0,
+            0,
+            img.width,
+            img.height,
+          );
+        }                
+    }
+
 
 }

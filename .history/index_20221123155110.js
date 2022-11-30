@@ -27,7 +27,7 @@ const shop = new Sprite({
     scale:{
         x: 2.75,
         y: 1
-    },
+    },,
     framesMax: 6
 });
 
@@ -47,53 +47,30 @@ const player = new Fighter({
     },
     imageSrc: './img/samuraiMack/Idle.png',
     framesMax: 8,
-    scale:{
-        x: 2.5,
-        y: 1
-    },
+    scale: 2.5,
     offset : {
         x: 215, 
         y: 205
     },
     sprites: {
-        idleRight: {
+        idle: {
             imageSrc: './img/samuraiMack/Idle.png',
             framesMax: 8,
         },
-        runRight: {
+        run: {
             imageSrc: './img/samuraiMack/Run.png',
             framesMax: 8,
         },
-        jumpRight: {
+        jump: {
             imageSrc: './img/samuraiMack/Jump.png',
             framesMax: 2,
         },
-        fallRight: {
+        fall: {
             imageSrc: './img/samuraiMack/Fall.png',
             framesMax: 2,
         },
-        attack1Right: {
+        attack1: {
             imageSrc: './img/samuraiMack/Attack1.png',
-            framesMax: 6,
-        },
-        idleLeft: {
-            imageSrc: './img/samuraiMack/Idle-left.png',
-            framesMax: 8,
-        },
-        runLeft: {
-            imageSrc: './img/samuraiMack/Run-left.png',
-            framesMax: 8,
-        },
-        jumpLeft: {
-            imageSrc: './img/samuraiMack/Jump-left.png',
-            framesMax: 2,
-        },
-        fallLeft: {
-            imageSrc: './img/samuraiMack/Fall-left.png',
-            framesMax: 2,
-        },
-        attack1Left: {
-            imageSrc: './img/samuraiMack/Attack1-left.png',
             framesMax: 6,
         }
 
@@ -117,55 +94,32 @@ const enemy = new Fighter({
     },
     imageSrc: './img/kenji/Idle.png',
     framesMax: 4,
-    scale:{
-        x: 2.5,
-        y: 1
-    },
+    scale: 2.5,
     offset : {
         x: 215, 
         y: 220
     },
     sprites: {
-        idleLeft: {
+        idle: {
             imageSrc: './img/kenji/Idle.png',
             framesMax: 4,
         },
-        runLeft: {
+        run: {
             imageSrc: './img/kenji/Run.png',
             framesMax: 8,
         },
-        jumpLeft: {
+        jump: {
             imageSrc: './img/kenji/Jump.png',
             framesMax: 2,
         },
-        fallLeft: {
+        fall: {
             imageSrc: './img/kenji/Fall.png',
             framesMax: 2,
         },
-        attack1Left: {
+        attack1: {
             imageSrc: './img/kenji/Attack1.png',
             framesMax: 4,
-        },
-        idleRight: {
-            imageSrc: './img/kenji/Idle-right.png',
-            framesMax: 4,
-        },
-        runRight: {
-            imageSrc: './img/kenji/Run-right.png',
-            framesMax: 8,
-        },
-        jumpRight: {
-            imageSrc: './img/kenji/Jump-right.png',
-            framesMax: 2,
-        },
-        fallRight: {
-            imageSrc: './img/kenji/Fall-right.png',
-            framesMax: 2,
-        },
-        attack1Right: {
-            imageSrc: './img/kenji/Attack1-right.png',
-            framesMax: 4,
-        } 
+        }
 
     }
 })
@@ -201,7 +155,7 @@ const keys = {
 
 //Create a lastKey to set the status of the last key.
 let lastKey;
-let lastDirection;
+
 decreaseTimer();
 
 //Create a animate function to control the movement of the player and the enemy. 
@@ -228,54 +182,48 @@ function animate() {
     
     if (keys.a.pressed && lastKey === 'a') {
         player.velocity.x = -5;
-        player.switchSprite('runLeft');
-        player.lastDirection = 'left';
+        player.switchSprite('run');
     }else if (keys.d.pressed && lastKey === 'd') {
         player.velocity.x = 5;
-        player.switchSprite('runRight');
-        player.lastDirection = 'right';
-    }else if (player.velocity.y === 0) {
-        if (player.lastDirection === 'left') player.switchSprite('idleLeft')
-        else player.switchSprite('idleRight')
-      }
+        player.switchSprite('run');
+    }else {
+        player.switchSprite('idle');
+    }
 
     //jumping
-    if (player.velocity.y < 0 && lastDirection === 'left') {
-        player.switchSprite('jumpLeft');
-    }else if (player.velocity.y < 0 && lastDirection === 'right') {
-        player.switchSprite('jumpRight');
-    }else if(player.velocity.y > 0 && lastDirection === 'left') {
-        player.switchSprite('fallLeft');
-    }else if (player.velocity.y > 0 && lastDirection === 'right') {
-        player.switchSprite('fallRight');
+    if (player.velocity.y < 0) {
+        player.switchSprite('jump');
+    }else if (player.velocity.y > 0) {
+        player.switchSprite('fall');
     }
    
 
     // enemy movement
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
         enemy.velocity.x = -5;
-        enemy.switchSprite('runLeft');
-        enemy.lastDirection = 'left';
+        enemy.switchSprite('run');
     }else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
         enemy.velocity.x = 5;
-        enemy.switchSprite('runRight');
-        enemy.lastDirection = 'right';
-    }else if (enemy.velocity.y === 0) {
-        if (enemy.lastDirection === 'right') enemy.switchSprite('idleRight')
-        else enemy.switchSprite('idleLeft')
-      }
-
-    //jumping
-    if (enemy.velocity.y < 0 && lastDirection === 'left') {
-        enemy.switchSprite('jumpLeft');
-    }else if (enemy.velocity.y < 0 && lastDirection === 'right') {
-        enemy.switchSprite('jumpRight');
-    }else if(enemy.velocity.y > 0 && lastDirection === 'left') {
-        enemy.switchSprite('fallLeft');
-    }else if (enemy.velocity.y > 0 && lastDirection === 'right') {
-        enemy.switchSprite('fallRight');
+        enemy.switchSprite('run');
+    }else {
+        enemy.switchSprite('idle');
     }
 
+    //jumping
+    if (enemy.velocity.y < 0) {
+        enemy.switchSprite('jump');
+    }else if (enemy.velocity.y > 0) {
+        enemy.switchSprite('fall');
+    }
+
+    //@detect for swapping places
+    if (rectangleTurnAround({
+        rectangle1: player,
+        rectangle2: enemy
+    })) {
+        player.attackBox.position.x  = player.position.x - 50;
+        enemy.attackBox.position.x = enemy.position.x;
+    }
 
     //detect for collision
     if (rectangularCollision({
@@ -315,12 +263,10 @@ switch (event.key) {
     case 'd':
         keys.d.pressed = true;
         lastKey = 'd';
-        lastDirection = 'right';
         break;
     case 'a':
         keys.a.pressed = true;
         lastKey = 'a';
-        lastDirection = 'left';
         break;
     case 'w':
         player.velocity.y = -20;
@@ -332,12 +278,10 @@ switch (event.key) {
     case 'ArrowLeft':
         keys.ArrowLeft.pressed = true;
         enemy.lastKey = 'ArrowLeft';
-        lastDirection = 'left';
         break;
     case 'ArrowRight':
         keys.ArrowRight.pressed = true;
         enemy.lastKey = 'ArrowRight';
-        lastDirection = 'right';
         break;
     case 'ArrowUp':
         enemy.velocity.y = -20;

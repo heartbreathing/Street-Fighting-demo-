@@ -4,14 +4,17 @@ function rectangularCollision({rectangle1, rectangle2}) {
         (rectangle1.attackBox.position.x + rectangle1.attackBox.width >= rectangle2.position.x && 
         rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width && 
         rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.attackBox.position.y && 
-        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height) ||
-        (rectangle1.attackBox.position.x >= rectangle2.attackBox.position.x && 
-        rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width && 
-        rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.attackBox.position.y && 
-        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height )
+        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height) ||(rectangle1.attackBox.position.x >= rectangle2.position.x && 
+            rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width && 
+            rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.attackBox.position.y && 
+            rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height )
     )
 }
 
+//@new a function of boxes swapping places
+function rectangleTurnAround({rectangle1, rectangle2}) {
+    return(rectangle1.position.x >= rectangle2.position.x + rectangle2.width);
+}
 
 
 //Create a function of determining winner within a timer function 
